@@ -1,17 +1,18 @@
-var path = require('path');
-
+const path = require('path');
+const outputPath = path.resolve(__dirname, 'public/javascripts/');
 module.exports = {
-  entry: './client/app.jsx',
+  entry: './client/app.js',
 
   output: {
     filename: 'app.js',
-    path: path.join('public/javascripts/')
+    path: outputPath
   },
 
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015']

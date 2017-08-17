@@ -1,7 +1,9 @@
 'use strict';
 
-const express = require('express');
-const handleRender = require('./middlewares/reactRender');
+// const express = require('express');
+import express from 'express';
+console.log('xxx');
+const handleRender = require('./middlewares/reactRender.jsx');
 const favicon = require('serve-favicon');
 
 const app = Express();

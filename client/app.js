@@ -6,8 +6,7 @@ import { createStore, applyMiddleware} from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk';
 import reducers from './modules';
-import App from './containers/App'
-import counterApp from './reducers'
+// import App from './containers/App'
 
 // Grab the state from a global variable injected into the server-generated HTML
 const preloadedState = window.__PRELOADED_STATE__
