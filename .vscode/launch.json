@@ -7,8 +7,20 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "webpack:server",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "npm.cmd",
+            "runtimeArgs": [
+                "run",
+                "webpack:server"
+            ],
+            "port": 5858
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/server/app",
+            "program": "${workspaceRoot}/src/server/app",
             "stopOnEntry": false,
             "args": [],
             "cwd": "${workspaceRoot}",
@@ -21,7 +33,7 @@
                 "NODE_ENV": "development"
             },
             "sourceMaps": true,
-            "outFiles": ["${workspaceRoot}/dist/*.js"]
+            "outFiles": ["${workspaceRoot}/dist/src/server/*.js"]
         }
     ]
 }

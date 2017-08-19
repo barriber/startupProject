@@ -30,7 +30,7 @@ function renderFullPage(html, preloadedState) {
     </html>`
 }
 
-module.exports = function handleRender(req, res) {
+module.exports.handleRender = (req, res) => {
     const store = createStore(reducers, applyMiddleware(thunk));
     const branch = matchRoutes(routes, req.url);
     const promises = branch.map(({route}) => {
