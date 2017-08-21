@@ -19,6 +19,18 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "build babel",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "npm.cmd",
+            "runtimeArgs": [
+                "run",
+                "build"
+            ],
+            "port": 6000
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceRoot}/src/server/app",
             "stopOnEntry": false,

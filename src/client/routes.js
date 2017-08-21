@@ -1,11 +1,12 @@
 import AppRoot from './AppRoot';
 import List from './List';
+import Home from './Home';
 
 const routes = [
   { component: AppRoot,
     routes: [
-      { path: '/list',
-        component: List
+      { path: '/home',
+        component: Home
       }
     ]
   }

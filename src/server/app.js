@@ -7,7 +7,7 @@ import {handleRender} from  './middlewares/reactRender';
 const app = express();
 const port = process.env.PORT || 8080;
 
-app.use('/static', express.static('static'));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use(handleRender);
 

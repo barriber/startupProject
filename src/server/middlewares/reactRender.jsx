@@ -1,14 +1,14 @@
 'use strict';
 
-const React = require('react');
-const StaticRouter = require('react-router-dom/StaticRouter');
-const thunk = require('redux-thunk');
-const {renderToString} = require('react-dom/server');
-const {applyMiddleware, createStore} = require('redux');
-const {matchRoutes, renderRoutes} = require('react-router-config');
-const {Provider} = require('react-redux');
-const routes = require('../../client/routes');
-const reducers = require('../../client/modules');
+import React from 'react' ;
+import StaticRouter from 'react-router-dom/StaticRouter';
+import thunk from 'redux-thunk';
+import {renderToString} from 'react-dom/server';
+import {applyMiddleware, createStore} from 'redux';
+import {matchRoutes, renderRoutes} from 'react-router-config';
+import {Provider} from 'react-redux';
+import routes from '../../client/routes';
+import reducers from '../../client/modules';
 
 
 function renderFullPage(html, preloadedState) {
@@ -39,8 +39,7 @@ module.exports.handleRender = (req, res) => {
     });
     return Promise.all(promises).then((data) => {
         let context = {};
-        const store = createStore(counterApp)
-
+        console.log(routes)
         // Render the component to a string
         const html = renderToString(
             <Provider store={store}>
