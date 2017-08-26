@@ -45,7 +45,7 @@
                 "NODE_ENV": "development"
             },
             "sourceMaps": true,
-            "outFiles": ["${workspaceRoot}/dist/src/server/*.js"]
+            "outFiles": ["${workspaceRoot}/dist/src/server/**/*.js"]
         }
     ]
 }

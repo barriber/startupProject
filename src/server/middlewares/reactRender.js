@@ -1,5 +1,6 @@
 'use strict';
 
+import express from 'express';
 import React from 'react' ;
 import StaticRouter from 'react-router-dom/StaticRouter';
 import thunk from 'redux-thunk';
@@ -10,28 +11,27 @@ import {Provider} from 'react-redux';
 import routes from '../../client/routes';
 import reducers from '../../client/modules';
 
+const router = express.Router();
+const store = createStore(reducers, applyMiddleware(thunk));
 
 function renderFullPage(html, preloadedState) {
-    return `
-    <!doctype html>
-    <html>
+    return `<html>
     <head>
         <title>Redux Universal Example</title>
     </head>
     <body>
     <div id="root">${html}</div>
     <script>
-        // WARNING: See the following for security issues around embedding JSON in HTML:
-        // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
         window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
     </script>
     <script src="/static/bundle.js"></script>
     </body>
-    </html>`
+    </html>
+    `
 }
 
-module.exports.handleRender = (req, res) => {
-    const store = createStore(reducers, applyMiddleware(thunk));
+router.get ('*', (req, res) => {
+    
     const branch = matchRoutes(routes, req.url);
     const promises = branch.map(({route}) => {
         let fetchData = route.component.fetchData;
@@ -39,7 +39,6 @@ module.exports.handleRender = (req, res) => {
     });
     return Promise.all(promises).then((data) => {
         let context = {};
-        console.log(routes)
         // Render the component to a string
         const html = renderToString(
             <Provider store={store}>
@@ -53,6 +52,9 @@ module.exports.handleRender = (req, res) => {
         const preloadedState = store.getState()
 
         // Send the rendered page back to the client
-        res.send(renderFullPage(html, preloadedState))
+        const x = renderFullPage(html, preloadedState);
+        res.send(x)
     });
-};
+});
+
+module.exports = router;

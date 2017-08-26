@@ -3,9 +3,11 @@ import { render } from 'react-dom';
 
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import { createStore, applyMiddleware} from 'redux'
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
+import { renderRoutes } from 'react-router-config';
 import thunk from 'redux-thunk';
 import reducers from './modules';
+import routes from './routes';
 // import App from './containers/App'
 
 // Grab the state from a global variable injected into the server-generated HTML
@@ -15,7 +17,7 @@ const preloadedState = window.__PRELOADED_STATE__
 delete window.__PRELOADED_STATE__
 
 // Create Redux store with initial state
-const store = createStore(counterApp, preloadedState,  applyMiddleware(thunk))
+const store = createStore(reducers, preloadedState,  applyMiddleware(thunk))
 
 const AppRouter = () => {
   return (
